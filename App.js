@@ -12,6 +12,7 @@ import Heading from './components/Heading';
 import Input from './components/Input';
 import Button from './components/Button';
 import TodoList from './components/TodoList';
+import TabBar from './components/TabBar';
 
 let todoIndex=0;
 type Props = {};
@@ -26,6 +27,7 @@ export default class App extends Component<Props> {
     this.submitTodo= this.submitTodo.bind(this);
     this.toggleComplete=this.toggleComplete.bind(this);
     this.deleteTodo=this.deleteTodo.bind(this);
+    this.setType=this.setType.bind(this);
   }
   inputChange(inputValue){
     console.log(' Input Value: ',inputValue);
@@ -61,16 +63,20 @@ export default class App extends Component<Props> {
     })
     this.setState({todos});
   }
+  setType(type){
+    this.setState({type});
+  }
   render() {
-    const {inputValue,todos}=this.state
+    const {inputValue,todos,type}=this.state
     return (
       <View style={styles.container}>
         <ScrollView keyboardShouldPersistTaps='always' style={styles.content}>
           <Heading/>
           <Input inputValue={inputValue} inputChange={(text)=>this.inputChange(text)} />
-          <TodoList todos={todos} toggleComplete={this.toggleComplete} deleteTodo={this.deleteTodo} />
+          <TodoList type={type} todos={todos} toggleComplete={this.toggleComplete} deleteTodo={this.deleteTodo} />
           <Button submitTodo={this.submitTodo} />
         </ScrollView>
+        <TabBar type={type} setType={this.setType} />
       </View>
     )
   }
