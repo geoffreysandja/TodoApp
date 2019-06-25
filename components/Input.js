@@ -7,7 +7,8 @@ const Input=({inputValue,inputChange})=>(
         style={styles.input}
         placeholder='What needs to be doen?'
         placeholderTextColor='#CACACA'
-        selectionColor='#666666'/>
+        selectionColor='#666666'
+        onChangeText={inputChange}/>
     </View>
 )
 
